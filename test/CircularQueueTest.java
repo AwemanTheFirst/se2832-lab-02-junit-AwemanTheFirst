@@ -14,6 +14,7 @@ import static org.junit.Assert.*;
  * Brad Dennis
  * 3/9/2017
  */
+@SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
 public class CircularQueueTest {
     @Before
     public void setUp() throws Exception {
@@ -498,7 +499,7 @@ public class CircularQueueTest {
         CircularQueue<String> queue = new CircularQueue<>(10);
 
         //Act & Assert
-        Object[] objects = queue.toArray(new String[] {});
+        Object[] objects = queue.toArray(new String[queue.size()]);
     }
 
     @Test
