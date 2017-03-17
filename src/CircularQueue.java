@@ -47,10 +47,10 @@ public class CircularQueue<E> implements FixedSizeQueueInterface<E> {
 	 */
 	public CircularQueue(int maxQueueSize) throws Exception {
 		super();
-		if (maxQueueSize < 0) {
+		if (maxQueueSize < 1) {
 			throw new Exception("Queue capacity invalid.");
 		}
-		
+		capacity = maxQueueSize;
 		clear();
 	}
 
@@ -59,15 +59,13 @@ public class CircularQueue<E> implements FixedSizeQueueInterface<E> {
 	 */
 	@Override
 	public boolean add(E arg0) throws  IllegalStateException{
-		boolean retVal = false;
-
 		if (isQueueFull()) {
 			// The queue is full. Throw an appropriate exception.
 			throw new IllegalStateException("The queue is full.");
 		} else {
 			offer(arg0);
 		}
-		return retVal;
+		return true;
 	}
 
 	@Override
@@ -78,7 +76,7 @@ public class CircularQueue<E> implements FixedSizeQueueInterface<E> {
 		if (size == 0) {
 			throw new NoSuchElementException("Circular queue is empty.");
 		} else {
-			return dataArray[tail];
+			return dataArray[head];
 		}
 	}
 
@@ -99,7 +97,7 @@ public class CircularQueue<E> implements FixedSizeQueueInterface<E> {
 		if (size == 0) {
 			return null;
 		} else {
-			return dataArray[tail];
+			return dataArray[head];
 		}
 	}
 
@@ -109,7 +107,7 @@ public class CircularQueue<E> implements FixedSizeQueueInterface<E> {
 		if (size == 0) {
 			// DO nothing.
 		} else {
-			retVal = dataArray[tail];
+			retVal = dataArray[head];
 			dataArray[head] = null;
 			head = (head + 1) % capacity;
 			size--;
@@ -144,8 +142,8 @@ public class CircularQueue<E> implements FixedSizeQueueInterface<E> {
 	@Override
 	public void clear() {
 		dataArray = ((E[]) new Object[capacity]);
-		tail = 1;
-		head = 1;
+		tail = 0;
+		head = 0;
 		size = 0;
 	}
 
@@ -169,7 +167,7 @@ public class CircularQueue<E> implements FixedSizeQueueInterface<E> {
 	 */
 	@Override
 	public Iterator<E> iterator() {
-		return null;
+        throw new UnsupportedOperationException("Method not yet supported.");
 	}
 
 	/**
@@ -206,7 +204,7 @@ public class CircularQueue<E> implements FixedSizeQueueInterface<E> {
 		Object retVal[] = new Object[size];
 
 		for (int index = 0; index < size; index++) {
-			int myOffset = (tail + index) % this.capacity;
+			int myOffset = (head + index) % this.capacity;
 			retVal[index] = this.dataArray[myOffset];
 		}
 		return retVal;
