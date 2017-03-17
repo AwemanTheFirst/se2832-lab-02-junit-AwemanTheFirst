@@ -18,26 +18,24 @@ import static org.junit.Assert.*;
 public class CircularQueueTest {
     @Before
     public void setUp() throws Exception {
-        //TODO: Put queue creation in here?
     }
 
     @After
     public void tearDown() throws Exception {
-
     }
 
     @Test(expected = Exception.class)
     public void constructorShouldThrowAnExceptionWhenCalledWithAZeroCapacity() throws
             Exception {
         //Arrange, Act, & Assert
-        CircularQueue<String> queue = new CircularQueue<>(0);
+        new CircularQueue<>(0);
     }
 
     @Test(expected = Exception.class)
     public void constructorShouldThrowAnExceptionWhenCalledWithANegativeCapacity() throws
             Exception {
         //Arrange, Act, & Assert
-        CircularQueue<String> queue = new CircularQueue<>(-1);
+        new CircularQueue<>(-1);
     }
 
     @Test
@@ -527,7 +525,7 @@ public class CircularQueueTest {
         CircularQueue<String> queue = new CircularQueue<>(10);
 
         //Act & Assert
-        Object[] objects = queue.toArray(new String[queue.size()]);
+        queue.toArray(new String[queue.size()]);
     }
 
     @Test
