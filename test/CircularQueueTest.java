@@ -24,17 +24,17 @@ public class CircularQueueTest {
     public void tearDown() throws Exception {
     }
 
-    @Test(expected = Exception.class)
+    @Test(expected = Exception.class) //Assert
     public void constructorShouldThrowAnExceptionWhenCalledWithAZeroCapacity() throws
             Exception {
-        //Arrange, Act, & Assert
+        //Act
         new CircularQueue<>(0);
     }
 
-    @Test(expected = Exception.class)
+    @Test(expected = Exception.class) //Assert
     public void constructorShouldThrowAnExceptionWhenCalledWithANegativeCapacity() throws
             Exception {
-        //Arrange, Act, & Assert
+        //Act
         new CircularQueue<>(-1);
     }
 
@@ -53,13 +53,13 @@ public class CircularQueueTest {
         }
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = IllegalStateException.class) //Assert
     public void addShouldThrowAnExceptionWhenAnElementIsNotSuccessfullyAddedToTheQueue()
             throws Exception {
         //Arrange
         CircularQueue<String> queue = new CircularQueue<>(10);
 
-        //Act & Assert
+        //Act
         for (int i = 1; i <= 11; i++) {
             queue.add("Word Number " + i);
         }
@@ -119,7 +119,6 @@ public class CircularQueueTest {
             Exception {
         //Arrange
         CircularQueue<String> queue = new CircularQueue<>(10);
-
         for (int i = 1; i <= 10; i++) {
             queue.add("Word Number " + i);
         }
@@ -134,24 +133,25 @@ public class CircularQueueTest {
     public void elementShouldNotDecrementSizeOfQueueWhenCalledRepeatedly() throws Exception {
         //Arrange
         CircularQueue<String> queue = new CircularQueue<>(10);
-
         for (int i = 1; i <= 10; i++) {
             queue.add("Word Number " + i);
         }
 
-        //Act & Assert
         for (int i = 9; i >= 0; i--) {
+            //Act
             queue.element();
+
+            //Assert
             assertEquals(10, queue.size());
         }
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test(expected = NoSuchElementException.class) //Assert
     public void elementShouldThrowAnExceptionWhenCalledOnAnEmptyQueue() throws Exception {
         //Arrange
         CircularQueue<String> queue = new CircularQueue<>(10);
 
-        //Act & Assert
+        //Act
         queue.element();
     }
 
@@ -225,7 +225,6 @@ public class CircularQueueTest {
             Exception {
         //Arrange
         CircularQueue<String> queue = new CircularQueue<>(10);
-
         for (int i = 1; i <= 10; i++) {
             queue.add("Word Number " + i);
         }
@@ -240,7 +239,6 @@ public class CircularQueueTest {
     public void peekShouldNotDecrementSizeOfQueueWhenCalledRepeatedly() throws Exception {
         //Arrange
         CircularQueue<String> queue = new CircularQueue<>(10);
-
         for (int i = 1; i <= 10; i++) {
             queue.add("Word Number " + i);
         }
@@ -266,7 +264,6 @@ public class CircularQueueTest {
             Exception {
         //Arrange
         CircularQueue<String> queue = new CircularQueue<>(10);
-
         for (int i = 1; i <= 10; i++) {
             queue.add("Word Number " + i);
         }
@@ -281,7 +278,6 @@ public class CircularQueueTest {
     public void pollShouldDecrementSizeOfQueueWhenCalledRepeatedly() throws Exception {
         //Arrange
         CircularQueue<String> queue = new CircularQueue<>(10);
-
         for (int i = 1; i <= 10; i++) {
             queue.add("Word Number " + i);
         }
@@ -309,7 +305,6 @@ public class CircularQueueTest {
             Exception {
         //Arrange
         CircularQueue<String> queue = new CircularQueue<>(10);
-
         for (int i = 1; i <= 10; i++) {
             queue.add("Word Number " + i);
         }
@@ -324,7 +319,6 @@ public class CircularQueueTest {
     public void removeShouldDecrementSizeOfQueueWhenCalledRepeatedly() throws Exception {
         //Arrange
         CircularQueue<String> queue = new CircularQueue<>(10);
-
         for (int i = 1; i <= 10; i++) {
             queue.add("Word Number " + i);
         }
@@ -338,25 +332,24 @@ public class CircularQueueTest {
         }
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test(expected = NoSuchElementException.class) //Assert
     public void removeShouldThrowAnExceptionWhenCalledOnAnEmptyQueue() throws Exception {
         //Arrange
         CircularQueue<String> queue = new CircularQueue<>(10);
 
-        //Act & Assert
+        //Act
         queue.remove();
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test(expected = UnsupportedOperationException.class) //Assert
     public void addAllShouldThrowAnExceptionWhenCalled() throws Exception {
         //Arrange
         CircularQueue<String> queue = new CircularQueue<>(10);
         Collection<String> words = new ArrayList<>();
-
         queue.add("Word");
         words.add("Word");
 
-        //Act & Assert
+        //Act
         queue.addAll(words);
     }
 
@@ -364,7 +357,6 @@ public class CircularQueueTest {
     public void clearShouldResultInSizeOfZeroWhenQueueStartsFull() throws Exception {
         //Arrange
         CircularQueue<String> queue = new CircularQueue<>(10);
-
         for (int i = 1; i <= 10; i++) {
             queue.add("Word Number " + i);
         }
@@ -380,7 +372,6 @@ public class CircularQueueTest {
     public void clearShouldCauseToArrayToReturnAnEmptyArrayWhenQueueStartsFull() throws Exception {
         //Arrange
         CircularQueue<String> queue = new CircularQueue<>(10);
-
         for (int i = 1; i <= 10; i++) {
             queue.add("Word Number " + i);
         }
@@ -392,27 +383,25 @@ public class CircularQueueTest {
         assertArrayEquals(new Object[]{}, queue.toArray());
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test(expected = UnsupportedOperationException.class) //Assert
     public void containsShouldThrowAnExceptionWhenCalled() throws Exception {
         //Arrange
         CircularQueue<String> queue = new CircularQueue<>(10);
-
         queue.add("Word");
 
-        //Act & Assert
+        //Act
         queue.contains("Word");
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test(expected = UnsupportedOperationException.class) //Assert
     public void containsAllShouldThrowAnExceptionWhenCalled() throws Exception {
         //Arrange
         CircularQueue<String> queue = new CircularQueue<>(10);
         Collection<String> words = new ArrayList<>();
-
         queue.add("Word");
         words.add("Word");
 
-        //Act & Assert
+        //Act
         queue.containsAll(words);
     }
 
@@ -429,7 +418,6 @@ public class CircularQueueTest {
     public void isEmptyShouldReturnFalseWhenQueueIsNotEmpty() throws Exception {
         //Arrange
         CircularQueue<String> queue = new CircularQueue<>(10);
-
         for (int i = 1; i <= 10; i++) {
             queue.add("Word Number " + i);
 
@@ -438,51 +426,48 @@ public class CircularQueueTest {
         }
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test(expected = UnsupportedOperationException.class) //Assert
     public void iteratorShouldThrowAnExceptionWhenCalled() throws Exception {
         //Arrange
         CircularQueue<String> queue = new CircularQueue<>(10);
 
-        //Act & Assert
+        //Act
         queue.iterator();
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test(expected = UnsupportedOperationException.class) //Assert
     public void removeShouldThrowAnExceptionWhenCalledWithAnArgument() throws Exception {
         //Arrange
         CircularQueue<String> queue = new CircularQueue<>(10);
-
         queue.add("Word");
 
-        //Act & Assert
+        //Act
         queue.remove("Word");
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test(expected = UnsupportedOperationException.class) //Assert
     public void removeAllShouldThrowAnExceptionWhenCalled() throws
             Exception {
         //Arrange
         CircularQueue<String> queue = new CircularQueue<>(10);
         Collection<String> words = new ArrayList<>();
-
         queue.add("Word");
         words.add("Word");
 
-        //Act & Assert
+        //Act
         queue.removeAll(words);
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test(expected = UnsupportedOperationException.class) //Assert
     public void retainAllShouldThrowAnExceptionWhenCalled() throws
             Exception {
         //Arrange
         CircularQueue<String> queue = new CircularQueue<>(10);
         Collection<String> words = new ArrayList<>();
-
         queue.add("Word");
         words.add("Word");
 
-        //Act & Assert
+        //Act
         queue.retainAll(words);
     }
 
@@ -504,12 +489,10 @@ public class CircularQueueTest {
         //Arrange
         CircularQueue<String> queue = new CircularQueue<>(10);
         Object[] objects = new Object[10];
-
         for (int i = 1; i <= 10; i++) {
             String word = "Word Number " + i;
             queue.add(word);
             objects[i - 1] = word;
-
             Object[] expected = new Object[i];
             System.arraycopy(objects, 0, expected, 0, i);
 
@@ -518,13 +501,13 @@ public class CircularQueueTest {
         }
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test(expected = UnsupportedOperationException.class) //Assert
     public void toArrayShouldThrowAnExceptionWhenCalledWithAnArrayOfTheContainedType() throws
             Exception {
         //Arrange
         CircularQueue<String> queue = new CircularQueue<>(10);
 
-        //Act & Assert
+        //Act
         queue.toArray(new String[queue.size()]);
     }
 
@@ -541,7 +524,6 @@ public class CircularQueueTest {
     public void getQueueCapacityShouldReturnTheCapacityWhenQueueGrowsInSize() throws Exception {
         //Arrange
         CircularQueue<String> queue = new CircularQueue<>(10);
-
         for (int i = 1; i <= 10; i++) {
             queue.add("Word Number " + i);
 
@@ -565,7 +547,6 @@ public class CircularQueueTest {
             Exception {
         //Arrange
         CircularQueue<String> queue = new CircularQueue<>(10);
-
         for (int i = 1; i < 10; i++) {
             queue.add("Word Number " + i);
 
@@ -578,7 +559,6 @@ public class CircularQueueTest {
     public void getRemainingQueueSpaceShouldReturnZeroWhenQueueIsFull() throws Exception {
         //Arrange
         CircularQueue<String> queue = new CircularQueue<>(10);
-
         for (int i = 1; i <= 10; i++) {
             queue.add("Word Number " + i);
         }
@@ -600,7 +580,6 @@ public class CircularQueueTest {
     public void isQueueFullShouldReturnFalseWhenQueueIsOnlyPartiallyFull() throws Exception {
         //Arrange
         CircularQueue<String> queue = new CircularQueue<>(10);
-
         for (int i = 1; i < 10; i++) {
             queue.add("Word Number " + i);
 
@@ -613,7 +592,6 @@ public class CircularQueueTest {
     public void isQueueFullShouldReturnTrueWhenQueueIsFull() throws Exception {
         //Arrange
         CircularQueue<String> queue = new CircularQueue<>(10);
-
         for (int i = 1; i <= 10; i++) {
             queue.add("Word Number " + i);
         }
