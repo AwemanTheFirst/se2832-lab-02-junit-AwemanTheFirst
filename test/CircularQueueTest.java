@@ -243,9 +243,11 @@ public class CircularQueueTest {
             queue.add("Word Number " + i);
         }
 
-        //Act & Assert
         for (int i = 9; i >= 0; i--) {
+            //Act
             queue.peek();
+
+            //Assert
             assertEquals(10, queue.size());
         }
     }
